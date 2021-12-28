@@ -7,15 +7,16 @@ from django.db import models
 # Create your models here.
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, email, password, **extra_fields):
+    def create(self, email, password, **extra_fields):
         if not email:
             raise ValueError(_("Email should be provided"))
 
         email = self.normalize_email(email)
 
-        new_user = self.model(email, **extra_fields)
+        new_user = self.model(email=email, **extra_fields)
 
         new_user.set_password(password)
+        print(f"========= {new_user.password}")
         
         new_user.save()
 
@@ -36,7 +37,7 @@ class CustomUserManager(BaseUserManager):
         if extra_fields.get("is_active") is not True:
             raise ValueError(_("Superuser should have is_active as True"))
             
-        return self.create_user(email, password, extra_fields)
+        return self.create(email, password, **extra_fields)
 
 class User(AbstractUser):
     username = models.CharField(max_length=25, unique=True)

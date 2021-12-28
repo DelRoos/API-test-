@@ -27,3 +27,11 @@ class UserCreationSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(detail="User with phonenumber exists")
 
         return super().validate(attrs)
+
+
+
+class UserDetailSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model=User
+        fields=['id', 'username', 'phone_number']
