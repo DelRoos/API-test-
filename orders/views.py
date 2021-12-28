@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from django.shortcuts import render, get_object_or_404
 from rest_framework import  generics, status
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser
 # from rest_framework.response import Response
 from . import serializers
 from .models import Order, User
@@ -43,7 +43,7 @@ class OrderCreateListView(generics.GenericAPIView):
 
 class OrderDetailView(generics.GenericAPIView):
     serializer_class= serializers.OrderDetailSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdminUser]
 
     def get(self, request, order_id):
         order= get_object_or_404(Order, pk=order_id)
