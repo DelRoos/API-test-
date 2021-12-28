@@ -44,12 +44,15 @@ INSTALLED_APPS = [
     # 'authentification',
     # 'orders',
 
+    'phonenumber_field',
     'rest_framework',
 ]
 
-
-
 AUTH_USER_MODEL = 'authentification.User'
+REST_FRAMEWORK={
+    'NON_FIELD_ERRORS_KEY': 'errors',
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
