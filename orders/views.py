@@ -3,6 +3,6 @@ from rest_framework import  generics, status
 from rest_framework.response import Response
 
 # Create your views here.
-class HelloAuthView(generics.GenericAPIView):
+class HelloOrderView(generics.GenericAPIView):
     def get(self,request):
-        return Response(data={"message": "Hello auth thier"}, status=status.HTTP_200_OK)
+        return Response(data={"message": "Hello order thier"}, status=status.HTTP_200_OK)
