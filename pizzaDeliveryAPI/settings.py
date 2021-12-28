@@ -41,9 +41,15 @@ INSTALLED_APPS = [
 
     'authentification.apps.AuthentificationConfig',
     'orders.apps.OrdersConfig',
+    # 'authentification',
+    # 'orders',
 
     'rest_framework',
 ]
+
+
+
+AUTH_USER_MODEL = 'authentification.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
