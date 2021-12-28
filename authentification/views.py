@@ -3,7 +3,7 @@ from rest_framework import  generics, status
 from rest_framework.response import Response
 from . import serializers
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser
-
+from drf_yasg.utils import swagger_auto_schema
 
 # Create your views here.
 class HelloAuthView(generics.GenericAPIView):
@@ -28,6 +28,9 @@ class CurrentUserView(generics.GenericAPIView):
     permission_classes = [IsAuthenticated]
     
 
+    @swagger_auto_schema(
+        operation_description="Create a post object"
+    )
     def get(self, request):
         serializer=self.serializer_class(data=request.user)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
